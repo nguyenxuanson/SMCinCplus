@@ -1,0 +1,50 @@
+LuaTex with MikTex: unicode
+http://tex.stackexchange.com/questions/15376/how-do-i-use-luatex-in-miktex
+
+
+md stage\lib\win32
+md stage\lib\x64
+
+REM Visual Studio 2005
+bjam --toolset=msvc-8.0 --build-type=complete stage
+move /Y stage\lib\* stage\lib\win32\
+
+bjam --toolset=msvc-8.0 address-model=64 --build-type=complete stage
+move /Y stage\lib\* stage\lib\x64\
+
+REM Visual Studio 2008
+bjam --toolset=msvc-9.0 --build-type=complete stage
+move /Y stage\lib\* stage\lib\win32\
+
+bjam --toolset=msvc-9.0 address-model=64 --build-type=complete stage
+move /Y stage\lib\* stage\lib\x64\
+
+b2 --toolset=msvc-12.0 address-model=64 --build-type=complete stage --build-dir=D:/workspace/libs/boost/ --stagedir=D:/workspace/libs/boost/
+b2 --toolset=msvc-12.0 --build-type=complete stage --build-dir=D:/workspace/libs/boost/ --stagedir=D:/workspace/libs/boost/
+
+
+how to install Boost
+https://svn.boost.org/trac/boost/wiki/TryModBoost
+git clone --recursive https://github.com/boostorg/boost.git modular-boost > clone.log
+
+http://www.youtube.com/watch?v=6trC5zVXzG0
+
+
+
+Eigen : Customized vectorized function -> binaryExpr
+http://eigen.tuxfamily.org/dox/classEigen_1_1ArrayBase.html#a011215bc930d7298944ee5d95a0a3579
+const CwiseBinaryOp<CustomBinaryOp, const Derived, const OtherDerived> binaryExpr
+	(	const Eigen::ArrayBase< OtherDerived > & 	other
+	,	const CustomBinaryOp & 	func = CustomBinaryOp() 
+	)	const
+
+Cast type
+http://eigen.tuxfamily.org/dox/classEigen_1_1MatrixBase.html#a660200abaf1fc4b888330a37d6132b76	
+internal::cast_return_type<Derived,const CwiseUnaryOp<internal::scalar_cast_op<typename internal::traits<Derived>::Scalar, NewType>, const Derived> >::type cast	(		)	 const
+
+
+Visual Studio 64 bit destination
+http://msdn.microsoft.com/en-us/library/vstudio/ms185328.aspx
+
+http://microsolutions.info/2012/11/eigen-linear-algebra-library-with-visual-c-2010.html
+
