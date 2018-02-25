@@ -416,39 +416,6 @@ double price_Vanilla
 	{
 		priceVanillaTmp = std::exp(-sdeParams.rd()*T)*(K*cnorm(-d2) - fwd*cnorm(-d1));
 	}
-	/*
-	object_t<ILinearPayOff> payoff = MakeObject<LinearPayOff, ILinearPayOff, ILinearPayOffW>
-	(isCall ? PayOffType::Call : PayOffType::Put
-	, maybe_t<std::vector<double> >(std::vector<double>(1, K))
-	);
-	object_t<IFirstGenerationOptionAnalytic> option = firstGenOptionAnalytic
-	(payoff
-	, T
-	, none
-	, none
-	, problemData.m_barU
-	, problemData.m_barD
-	, maybe_t<inout_t>(InOut::Out)
-	, none
-	, none
-	, none
-	, none
-	);
-
-	double const price = priceOptionBS
-	(sdeParams.spot()
-	, sdeParams.rd()
-	, sdeParams.rf()
-	, sdeParams.vol()
-	, option
-	, none
-	);
-
-	if (problemData.m_barU.nothing() && problemData.m_barD.nothing())
-	{
-	BOOST_ASSERT_MSG(std::fabs(priceVanillaTmp - price)<1e-10, "TOO BIG");
-	}
-	*/
 	return priceVanillaTmp;
 }
 
